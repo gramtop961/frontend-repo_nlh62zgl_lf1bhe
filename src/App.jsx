@@ -1,26 +1,30 @@
 import { useState } from 'react'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import SearchBar from './components/SearchBar'
+import { LoreSection, CharactersSection, AreasSection, EnemiesSection, ItemsSection, SilksongSection } from './components/Sections'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [searchOpen, setSearchOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="min-h-screen bg-slate-950 text-white">
+      <Navbar onSearchFocus={() => setSearchOpen(true)} />
+      <main className="pt-16">
+        <Hero />
+        <LoreSection />
+        <CharactersSection />
+        <AreasSection />
+        <EnemiesSection />
+        <ItemsSection />
+        <SilksongSection />
+      </main>
+      <SearchBar open={searchOpen} onClose={() => setSearchOpen(false)} />
+      <footer className="border-t border-white/10 bg-slate-950/90">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-slate-400 text-sm">
+          Fan-made wiki inspired by the worlds of Team Cherry. This site is not affiliated with or endorsed by the developer.
         </div>
-      </div>
+      </footer>
     </div>
   )
 }
